@@ -13,6 +13,11 @@ namespace TypoGrapher
         [SerializeField] 
         private TextMeshProUGUI _text;
 
+        public void SetText(string text)
+        {
+            _text.text = text;
+        }
+        
         public void SetEnable(bool enable)
         {
             _text.enabled = enable;

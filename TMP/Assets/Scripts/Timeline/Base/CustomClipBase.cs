@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
@@ -7,9 +8,11 @@ namespace TypoGrapher
     /// <summary>
     /// ClipやBehaviourを特定したカスタムClip的なもののベース
     /// </summary>
+    [Serializable]
     public abstract class CustomClipBase<T> : PlayableAsset, ITimelineClipAsset
         where T : PlayableBehaviour, new()
     {
+        [SerializeField]
         private T _behaviour;
         public T Behaviour 
         {
@@ -29,7 +32,7 @@ namespace TypoGrapher
         public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
         {
             // BehaviourのPlayableを作って返すだけ
-            return ScriptPlayable<T>.Create(graph);
+            return ScriptPlayable<T>.Create(graph, Behaviour);
         }
     }
 }
